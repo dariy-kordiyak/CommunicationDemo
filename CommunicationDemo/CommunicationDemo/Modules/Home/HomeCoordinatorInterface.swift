@@ -9,7 +9,9 @@ import Foundation
 
 protocol HomeCoordinatorInterface: class {}
 protocol HomeViewInput: class {}
-protocol HomeViewOutput: class {}
+protocol HomeViewOutput: class {
+    func actionButtonTapped()
+}
 protocol HomeViewDatasource: class {}
 
 enum HomeModule {

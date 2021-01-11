@@ -13,6 +13,17 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
     
     // MARK: - Properties
     
+    private let actionButton: UIButton = {
+        let ret = UIButton(type: .system)
+        ret.setTitle("Send message to Watch", for: .normal)
+        ret.addTarget(self,
+                      action: #selector(actionButtonTapped(_:)),
+                      for: .touchUpInside)
+        ret.translatesAutoresizingMaskIntoConstraints = false
+        
+        return ret
+    }()
+    
     private let dataSource: Datasource
     private let eventsHandler: ViewOutput
     
@@ -33,9 +44,26 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        setupView()
     }
 
+    // MARK: - Actions
+    
+    @IBAction private func actionButtonTapped(_ sender: UIButton) {
+        eventsHandler.actionButtonTapped()
+    }
+    
+    // MARK: - Private
+    
+    private func setupView() {
+        view.backgroundColor = .yellow
+        
+        view.addSubview(actionButton)
+        let buttonConstraints = [actionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                 actionButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(buttonConstraints)
+    }
 
 }
 

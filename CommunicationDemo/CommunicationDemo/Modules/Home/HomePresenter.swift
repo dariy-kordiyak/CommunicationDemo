@@ -7,12 +7,14 @@
 
 import Foundation
 
-final class HomePresenter: HomeViewDatasource, HomeViewOutput {
+final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     
     typealias Event = HomeModule.Event
     typealias View = HomeViewInput
     
     // MARK: - Properties
+    
+    private var sessionHandler = SessionHandler.shared
     
     private let coordinator: HomeCoordinatorInterface
     weak var view: View?
@@ -37,6 +39,15 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput {
               itemIndex: IndexPath?,
               didProduceEvent event: Event) {
         
+    }
+    
+    func actionButtonTapped() {
+        let message: [String: Any] = ["message": "from phone"]
+        sessionHandler.wcSession.sendMessage(message,
+                                             replyHandler: nil) { [weak self] error in
+            self?.log("HomePresenter -> error sending message: \(error)")
+        }
+
     }
     
 }

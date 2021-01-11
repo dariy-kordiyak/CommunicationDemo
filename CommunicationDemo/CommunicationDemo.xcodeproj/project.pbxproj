@@ -41,6 +41,7 @@
 		47CFC1FF25A9CD4F00CFFBEB /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 47CFC1FE25A9CD4F00CFFBEB /* Zip */; };
 		47DE3AE725AC341A002C3363 /* LogginUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE3AE625AC341A002C3363 /* LogginUtils.swift */; };
 		47DE3AE825AC341A002C3363 /* LogginUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE3AE625AC341A002C3363 /* LogginUtils.swift */; };
+		47DE3AF725AC617B002C3363 /* SessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE3AF625AC617B002C3363 /* SessionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		47CFC1B625A9C7DC00CFFBEB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		47CFC1BE25A9C8D600CFFBEB /* UIUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtility.swift; sourceTree = "<group>"; };
 		47DE3AE625AC341A002C3363 /* LogginUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogginUtils.swift; sourceTree = "<group>"; };
+		47DE3AF625AC617B002C3363 /* SessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 		4710872725A322ED0011613D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				471047F325A32408003CFC2D /* CoordinatorInterface.swift */,
 				4710872825A323040011613D /* Home */,
 			);
 			path = Modules;
@@ -222,7 +225,7 @@
 				4710872725A322ED0011613D /* Modules */,
 				47741CC925A31B86003E8010 /* AppDelegate.swift */,
 				47741CCB25A31B86003E8010 /* SceneDelegate.swift */,
-				471047F325A32408003CFC2D /* CoordinatorInterface.swift */,
+				47DE3AF625AC617B002C3363 /* SessionHandler.swift */,
 				47741CD225A31B88003E8010 /* Assets.xcassets */,
 				47741CD425A31B88003E8010 /* LaunchScreen.storyboard */,
 				47741CD725A31B88003E8010 /* Info.plist */,
@@ -508,6 +511,7 @@
 				4710480525A340EF003CFC2D /* HomeCoordinatorInterface.swift in Sources */,
 				471047ED25A323A5003CFC2D /* HomePresenter.swift in Sources */,
 				47CFC1B725A9C7DC00CFFBEB /* AppSettings.swift in Sources */,
+				47DE3AF725AC617B002C3363 /* SessionHandler.swift in Sources */,
 				47CFC1AA25A9C74F00CFFBEB /* TimeUtility.swift in Sources */,
 				47741CCC25A31B86003E8010 /* SceneDelegate.swift in Sources */,
 				47CFC1A225A9C5B100CFFBEB /* Constants.swift in Sources */,

@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, Logging {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setLogLevel(.log)
         log("AppDelegate -> didFinishLaunchingWithOptions")
+        SessionHandler.shared.configureWatchConnectivitySession()
         return true
     }
 
