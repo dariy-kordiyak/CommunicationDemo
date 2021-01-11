@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,20 @@
 		47741D0925A31B8A003E8010 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47741D0825A31B8A003E8010 /* NotificationController.swift */; };
 		47741D0B25A31B8A003E8010 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47741D0A25A31B8A003E8010 /* ComplicationController.swift */; };
 		47741D0D25A31B8A003E8010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47741D0C25A31B8A003E8010 /* Assets.xcassets */; };
+		47CFC19525A9C54400CFFBEB /* LoggingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC19425A9C54400CFFBEB /* LoggingManager.swift */; };
+		47CFC19625A9C54400CFFBEB /* LoggingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC19425A9C54400CFFBEB /* LoggingManager.swift */; };
+		47CFC1A225A9C5B100CFFBEB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1A125A9C5B100CFFBEB /* Constants.swift */; };
+		47CFC1A325A9C5B100CFFBEB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1A125A9C5B100CFFBEB /* Constants.swift */; };
+		47CFC1AA25A9C74F00CFFBEB /* TimeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1A925A9C74F00CFFBEB /* TimeUtility.swift */; };
+		47CFC1AB25A9C75000CFFBEB /* TimeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1A925A9C74F00CFFBEB /* TimeUtility.swift */; };
+		47CFC1B725A9C7DC00CFFBEB /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1B625A9C7DC00CFFBEB /* AppSettings.swift */; };
+		47CFC1B825A9C7DC00CFFBEB /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1B625A9C7DC00CFFBEB /* AppSettings.swift */; };
+		47CFC1BF25A9C8D600CFFBEB /* UIUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1BE25A9C8D600CFFBEB /* UIUtility.swift */; };
+		47CFC1C025A9C8D600CFFBEB /* UIUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1BE25A9C8D600CFFBEB /* UIUtility.swift */; };
+		47CFC1C825A9CC2700CFFBEB /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 47CFC1C725A9CC2700CFFBEB /* Zip */; };
+		47CFC1FF25A9CD4F00CFFBEB /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 47CFC1FE25A9CD4F00CFFBEB /* Zip */; };
+		47DE3AE725AC341A002C3363 /* LogginUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE3AE625AC341A002C3363 /* LogginUtils.swift */; };
+		47DE3AE825AC341A002C3363 /* LogginUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE3AE625AC341A002C3363 /* LogginUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +129,12 @@
 		47741D0C25A31B8A003E8010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47741D0E25A31B8A003E8010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47741D0F25A31B8A003E8010 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		47CFC19425A9C54400CFFBEB /* LoggingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingManager.swift; sourceTree = "<group>"; };
+		47CFC1A125A9C5B100CFFBEB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		47CFC1A925A9C74F00CFFBEB /* TimeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtility.swift; sourceTree = "<group>"; };
+		47CFC1B625A9C7DC00CFFBEB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		47CFC1BE25A9C8D600CFFBEB /* UIUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtility.swift; sourceTree = "<group>"; };
+		47DE3AE625AC341A002C3363 /* LogginUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogginUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CFC1C825A9CC2700CFFBEB /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CFC1FF25A9CD4F00CFFBEB /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +199,7 @@
 				47741CF425A31B88003E8010 /* CommunicationDemo WatchKit App */,
 				47741D0325A31B8A003E8010 /* CommunicationDemo WatchKit Extension */,
 				47741CC725A31B86003E8010 /* Products */,
+				47CFC1FD25A9CD4F00CFFBEB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,6 +218,7 @@
 		47741CC825A31B86003E8010 /* CommunicationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				47CFC19225A9C51100CFFBEB /* Utils */,
 				4710872725A322ED0011613D /* Modules */,
 				47741CC925A31B86003E8010 /* AppDelegate.swift */,
 				47741CCB25A31B86003E8010 /* SceneDelegate.swift */,
@@ -248,6 +272,34 @@
 			path = "CommunicationDemo WatchKit Extension";
 			sourceTree = "<group>";
 		};
+		47CFC19225A9C51100CFFBEB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				47CFC19325A9C51B00CFFBEB /* Logging */,
+				47CFC1A125A9C5B100CFFBEB /* Constants.swift */,
+				47CFC1A925A9C74F00CFFBEB /* TimeUtility.swift */,
+				47CFC1B625A9C7DC00CFFBEB /* AppSettings.swift */,
+				47CFC1BE25A9C8D600CFFBEB /* UIUtility.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		47CFC19325A9C51B00CFFBEB /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				47DE3AE625AC341A002C3363 /* LogginUtils.swift */,
+				47CFC19425A9C54400CFFBEB /* LoggingManager.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		47CFC1FD25A9CD4F00CFFBEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -266,6 +318,9 @@
 				47741CF325A31B88003E8010 /* PBXTargetDependency */,
 			);
 			name = CommunicationDemo;
+			packageProductDependencies = (
+				47CFC1C725A9CC2700CFFBEB /* Zip */,
+			);
 			productName = CommunicationDemo;
 			productReference = 47741CC625A31B86003E8010 /* CommunicationDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -336,6 +391,9 @@
 			dependencies = (
 			);
 			name = "CommunicationDemo WatchKit Extension";
+			packageProductDependencies = (
+				47CFC1FE25A9CD4F00CFFBEB /* Zip */,
+			);
 			productName = "CommunicationDemo WatchKit Extension";
 			productReference = 47741CFF25A31B8A003E8010 /* CommunicationDemo WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -377,6 +435,9 @@
 				Base,
 			);
 			mainGroup = 47741CBD25A31B86003E8010;
+			packageReferences = (
+				47CFC1C625A9CC2700CFFBEB /* XCRemoteSwiftPackageReference "Zip" */,
+			);
 			productRefGroup = 47741CC725A31B86003E8010 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -438,13 +499,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CFC1BF25A9C8D600CFFBEB /* UIUtility.swift in Sources */,
 				47741CCE25A31B86003E8010 /* HomeViewController.swift in Sources */,
+				47CFC19525A9C54400CFFBEB /* LoggingManager.swift in Sources */,
 				471047E625A3239B003CFC2D /* HomeCoordinator.swift in Sources */,
 				471047F425A32408003CFC2D /* CoordinatorInterface.swift in Sources */,
 				47741CCA25A31B86003E8010 /* AppDelegate.swift in Sources */,
 				4710480525A340EF003CFC2D /* HomeCoordinatorInterface.swift in Sources */,
 				471047ED25A323A5003CFC2D /* HomePresenter.swift in Sources */,
+				47CFC1B725A9C7DC00CFFBEB /* AppSettings.swift in Sources */,
+				47CFC1AA25A9C74F00CFFBEB /* TimeUtility.swift in Sources */,
 				47741CCC25A31B86003E8010 /* SceneDelegate.swift in Sources */,
+				47CFC1A225A9C5B100CFFBEB /* Constants.swift in Sources */,
+				47DE3AE725AC341A002C3363 /* LogginUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,10 +535,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47CFC1C025A9C8D600CFFBEB /* UIUtility.swift in Sources */,
+				47CFC19625A9C54400CFFBEB /* LoggingManager.swift in Sources */,
 				47741D0925A31B8A003E8010 /* NotificationController.swift in Sources */,
 				47741D0B25A31B8A003E8010 /* ComplicationController.swift in Sources */,
 				47741D0725A31B8A003E8010 /* ExtensionDelegate.swift in Sources */,
+				47DE3AE825AC341A002C3363 /* LogginUtils.swift in Sources */,
 				47741D0525A31B8A003E8010 /* InterfaceController.swift in Sources */,
+				47CFC1AB25A9C75000CFFBEB /* TimeUtility.swift in Sources */,
+				47CFC1B825A9C7DC00CFFBEB /* AppSettings.swift in Sources */,
+				47CFC1A325A9C5B100CFFBEB /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +983,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47CFC1C625A9CC2700CFFBEB /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47CFC1C725A9CC2700CFFBEB /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CFC1C625A9CC2700CFFBEB /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+		47CFC1FE25A9CD4F00CFFBEB /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47CFC1C625A9CC2700CFFBEB /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 47741CBE25A31B86003E8010 /* Project object */;
 }
