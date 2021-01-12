@@ -91,7 +91,6 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any]) {
         log("InterfaceController -> WCSessionDelegate -> didReceiveMessage: \(message)")
-        WKInterfaceDevice.current().play(.notification)
         guard let messagePayload = message["message"] as? String else {
             log("InterfaceController -> WCSessionDelegate -> WARNING: message payload wrong")
             return
@@ -104,9 +103,7 @@ extension InterfaceController: WCSessionDelegate {
     }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
-        log("InterfaceController -> sessionReachabilityDidChange")
-        log("InterfaceController -> sessionReachabilityDidChange, isReachable: \(session.isReachable)")
-        log("InterfaceController -> sessionReachabilityDidChange, activationState: \(session.activationState)")
+        log("InterfaceController -> sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
     }
     
 }

@@ -49,6 +49,10 @@ extension SessionHandler: WCSessionDelegate {
         wcSession.activate()
     }
     
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        log("SessionHandler -> sessionWatchStateDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
+    }
+    
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any],
                  replyHandler: @escaping ([String : Any]) -> Void) {
