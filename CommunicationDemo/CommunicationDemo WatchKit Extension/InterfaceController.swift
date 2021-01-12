@@ -99,4 +99,14 @@ extension InterfaceController: WCSessionDelegate {
         textLabel.setText(messagePayload)
     }
     
+    func sessionCompanionAppInstalledDidChange(_ session: WCSession) {
+        log("InterfaceController -> sessionCompanionAppInstalledDidChange")
+    }
+    
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        log("InterfaceController -> sessionReachabilityDidChange")
+        log("InterfaceController -> sessionReachabilityDidChange, isReachable: \(session.isReachable)")
+        log("InterfaceController -> sessionReachabilityDidChange, activationState: \(session.activationState)")
+    }
+    
 }

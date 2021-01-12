@@ -6,6 +6,7 @@
 //
 
 import WatchKit
+import HealthKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, Logging {
 
@@ -54,6 +55,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, Logging {
                 task.setTaskCompletedWithSnapshot(false)
             }
         }
+    }
+    
+    func handle(_ workoutConfiguration: HKWorkoutConfiguration) {
+        log("ExtensionDelegate -> handle(_ workoutConfiguration: \(workoutConfiguration)")
     }
 
 }

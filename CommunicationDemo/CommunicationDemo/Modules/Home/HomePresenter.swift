@@ -15,6 +15,7 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     // MARK: - Properties
     
     private var sessionHandler = SessionHandler.shared
+    private var healthKitManager = HealthKitHandler.shared
     
     private let coordinator: HomeCoordinatorInterface
     weak var view: View?
@@ -27,14 +28,12 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     
     // MARK: - HomeViewOutput
     
-    func viewDidFetchData(_ view: View) {
-        
+    func viewDidFetchData() {
+        healthKitManager.authorizeHealthKit { (_, _) in
+            self.healthKitManager.start()
+        }
     }
-    
-    func viewShouldClose(_ view: View) {
         
-    }
-    
     func view(_ view: View,
               itemIndex: IndexPath?,
               didProduceEvent event: Event) {

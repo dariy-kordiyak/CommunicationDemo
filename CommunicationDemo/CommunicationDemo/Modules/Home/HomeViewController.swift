@@ -45,6 +45,7 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
         super.viewDidLoad()
         
         setupView()
+        eventsHandler.viewDidFetchData()
     }
 
     // MARK: - Actions

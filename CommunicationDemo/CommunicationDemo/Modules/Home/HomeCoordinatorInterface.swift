@@ -10,6 +10,7 @@ import Foundation
 protocol HomeCoordinatorInterface: class {}
 protocol HomeViewInput: class {}
 protocol HomeViewOutput: class {
+    func viewDidFetchData()
     func actionButtonTapped()
 }
 protocol HomeViewDatasource: class {}
