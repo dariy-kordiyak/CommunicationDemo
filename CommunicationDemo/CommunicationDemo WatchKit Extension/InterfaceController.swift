@@ -32,20 +32,15 @@ class InterfaceController: WKInterfaceController, Logging {
                                      selector: #selector(timerFired),
                                      userInfo: nil,
                                      repeats: true)
+        activateSession()
+        log("isCompanionAppInstalled: \(wcSession.isCompanionAppInstalled)")
+        log("isReachable: \(wcSession.isReachable)")
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         log("willActivate")
-        
-        guard WCSession.isSupported() else {
-            log("FATAL: WCSession not supported")
-            fatalError("WCSession not suppoted")
-        }
-        wcSession.delegate = self
-        wcSession.activate()
-        
         log("isCompanionAppInstalled: \(wcSession.isCompanionAppInstalled)")
         log("isReachable: \(wcSession.isReachable)")
     }
@@ -76,6 +71,15 @@ class InterfaceController: WKInterfaceController, Logging {
     }
     
     // MARK: - Private
+    
+    private func activateSession() {
+        guard WCSession.isSupported() else {
+            log("FATAL: WCSession not supported")
+            fatalError("WCSession not suppoted")
+        }
+        wcSession.delegate = self
+        wcSession.activate()
+    }
     
     private func sendMessage(parameter: String) {
         guard wcSession.isReachable else {
