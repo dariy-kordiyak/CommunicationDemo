@@ -31,6 +31,9 @@
 		47741D0925A31B8A003E8010 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47741D0825A31B8A003E8010 /* NotificationController.swift */; };
 		47741D0B25A31B8A003E8010 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47741D0A25A31B8A003E8010 /* ComplicationController.swift */; };
 		47741D0D25A31B8A003E8010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47741D0C25A31B8A003E8010 /* Assets.xcassets */; };
+		47AEF20325AF0E270045975D /* SessionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AEF20225AF0E270045975D /* SessionUtils.swift */; };
+		47AEF21025AF0E7E0045975D /* WatchSessionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AEF20F25AF0E7E0045975D /* WatchSessionUtils.swift */; };
+		47AEF21625AF0EF00045975D /* SessionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AEF20225AF0E270045975D /* SessionUtils.swift */; };
 		47CFC19525A9C54400CFFBEB /* LoggingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC19425A9C54400CFFBEB /* LoggingManager.swift */; };
 		47CFC19625A9C54400CFFBEB /* LoggingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC19425A9C54400CFFBEB /* LoggingManager.swift */; };
 		47CFC1A225A9C5B100CFFBEB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CFC1A125A9C5B100CFFBEB /* Constants.swift */; };
@@ -140,6 +143,8 @@
 		47741D0C25A31B8A003E8010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47741D0E25A31B8A003E8010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47741D0F25A31B8A003E8010 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		47AEF20225AF0E270045975D /* SessionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtils.swift; sourceTree = "<group>"; };
+		47AEF20F25AF0E7E0045975D /* WatchSessionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionUtils.swift; sourceTree = "<group>"; };
 		47CFC19425A9C54400CFFBEB /* LoggingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingManager.swift; sourceTree = "<group>"; };
 		47CFC1A125A9C5B100CFFBEB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		47CFC1A925A9C74F00CFFBEB /* TimeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtility.swift; sourceTree = "<group>"; };
@@ -287,6 +292,7 @@
 				47741D0C25A31B8A003E8010 /* Assets.xcassets */,
 				47741D0E25A31B8A003E8010 /* Info.plist */,
 				47741D0F25A31B8A003E8010 /* PushNotificationPayload.apns */,
+				47AEF20F25AF0E7E0045975D /* WatchSessionUtils.swift */,
 			);
 			path = "CommunicationDemo WatchKit Extension";
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 				47CFC1A925A9C74F00CFFBEB /* TimeUtility.swift */,
 				47CFC1B625A9C7DC00CFFBEB /* AppSettings.swift */,
 				47CFC1BE25A9C8D600CFFBEB /* UIUtility.swift */,
+				47AEF20225AF0E270045975D /* SessionUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -522,6 +529,7 @@
 			files = (
 				47CFC1BF25A9C8D600CFFBEB /* UIUtility.swift in Sources */,
 				47741CCE25A31B86003E8010 /* HomeViewController.swift in Sources */,
+				47AEF20325AF0E270045975D /* SessionUtils.swift in Sources */,
 				4710EDB225ADAB96003B5A85 /* HealthKitHandler.swift in Sources */,
 				47CFC19525A9C54400CFFBEB /* LoggingManager.swift in Sources */,
 				471047E625A3239B003CFC2D /* HomeCoordinator.swift in Sources */,
@@ -560,10 +568,12 @@
 			files = (
 				47CFC1C025A9C8D600CFFBEB /* UIUtility.swift in Sources */,
 				47CFC19625A9C54400CFFBEB /* LoggingManager.swift in Sources */,
+				47AEF21625AF0EF00045975D /* SessionUtils.swift in Sources */,
 				47741D0925A31B8A003E8010 /* NotificationController.swift in Sources */,
 				47741D0B25A31B8A003E8010 /* ComplicationController.swift in Sources */,
 				47741D0725A31B8A003E8010 /* ExtensionDelegate.swift in Sources */,
 				47DE3AE825AC341A002C3363 /* LogginUtils.swift in Sources */,
+				47AEF21025AF0E7E0045975D /* WatchSessionUtils.swift in Sources */,
 				4710EDC325ADAFF6003B5A85 /* WorkoutSessionManager.swift in Sources */,
 				47741D0525A31B8A003E8010 /* InterfaceController.swift in Sources */,
 				47CFC1AB25A9C75000CFFBEB /* TimeUtility.swift in Sources */,

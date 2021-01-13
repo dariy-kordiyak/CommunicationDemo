@@ -25,7 +25,7 @@ final class WorkoutSessionManager: NSObject, Logging {
          // We have to return a cached value because session.state does not immediately get
          // updated after we call store.start(), store.end(), or store.pause()
          if let session = session {
-             log("Current session state: \(session.state)")
+            log("Current session state: \(session.state.toString())")
          }
          return session?.state ?? .notStarted
     }
@@ -90,7 +90,7 @@ extension WorkoutSessionManager: HKWorkoutSessionDelegate {
                         didChangeTo toState: HKWorkoutSessionState,
                         from fromState: HKWorkoutSessionState,
                         date: Date) {
-        log("workoutSession didChangeTo: \(toState) from: \(fromState), date: \(date)")
+        log("workoutSession didChangeTo: \(toState.toString()) from: \(fromState.toString()), date: \(date)")
 
         workoutState = toState
     }

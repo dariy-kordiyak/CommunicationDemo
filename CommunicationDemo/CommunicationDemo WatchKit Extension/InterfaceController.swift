@@ -105,7 +105,7 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
-        log("activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
+        log("activationDidCompleteWith state: \(activationState.toString()), error: \(String(describing: error))")
     }
     
     func session(_ session: WCSession,
@@ -123,7 +123,7 @@ extension InterfaceController: WCSessionDelegate {
     }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
-        log("sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
+        log("sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState.toString())")
     }
     
 }

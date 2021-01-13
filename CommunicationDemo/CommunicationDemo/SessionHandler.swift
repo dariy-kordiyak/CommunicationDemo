@@ -41,7 +41,7 @@ extension SessionHandler: WCSessionDelegate {
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
-        log("activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
+        log("activationDidCompleteWith state: \(activationState.toString()), error: \(String(describing: error))")
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
@@ -55,7 +55,7 @@ extension SessionHandler: WCSessionDelegate {
     }
     
     func sessionWatchStateDidChange(_ session: WCSession) {
-        log("sessionWatchStateDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
+        log("sessionWatchStateDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState.toString())")
     }
     
     func session(_ session: WCSession,
