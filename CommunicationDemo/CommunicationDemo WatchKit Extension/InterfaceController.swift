@@ -27,7 +27,6 @@ class InterfaceController: WKInterfaceController, Logging {
         // Configure interface objects here.
         super.awake(withContext: context)
         log("awake")
-        
         timer = Timer.scheduledTimer(timeInterval: 5,
                                      target: self,
                                      selector: #selector(timerFired),
@@ -86,14 +85,14 @@ class InterfaceController: WKInterfaceController, Logging {
         log("sendMessage")
         
         let message = ["key": "from Watch: \(parameter)"]
-        wcSession.sendMessage(message) { [weak self] response in
-            guard let responsePayload = response["key"] as? String else {
-                self?.log("FATAL: wrong response format")
-                fatalError("FATAL: wrong response format")
-            }
-            DispatchQueue.main.async {
-                self?.textLabel.setText("\(responsePayload)")
-            }
+        wcSession.sendMessage(message) { _ in
+//            guard let responsePayload = response["key"] as? String else {
+//                self?.log("FATAL: wrong response format")
+//                fatalError("FATAL: wrong response format")
+//            }
+//            DispatchQueue.main.async {
+//                self?.textLabel.setText("\(responsePayload)")
+//            }
         } errorHandler: { [weak self] error in
             self?.log("WARNING: sendMessage errorHandler: \(error)")
         }
@@ -106,14 +105,14 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
-        log("WCSessionDelegate -> activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
+        log("activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
     }
     
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any]) {
-        log("WCSessionDelegate -> didReceiveMessage: \(message)")
+        log("didReceiveMessage: \(message)")
         guard let messagePayload = message["key"] as? String else {
-            log("InterfaceController -> WCSessionDelegate -> WARNING: message payload wrong")
+            log("WARNING: message payload wrong")
             return
         }
         textLabel.setText(messagePayload)

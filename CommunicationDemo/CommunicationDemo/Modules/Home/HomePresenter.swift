@@ -33,15 +33,14 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     // MARK: - HomeViewOutput
     
     func viewDidFetchData() {
-        healthKitManager.authorizeHealthKit { [weak self] (_, _) in
-            guard let self = self else { return }
+        healthKitManager.authorizeHealthKit { (_, _) in
             self.healthKitManager.start()
-            self.timer = Timer(timeInterval: 12,
-                                target: self,
-                                selector: #selector(self.timerFired),
-                                userInfo: nil,
-                                repeats: true)
         }
+        timer = Timer.scheduledTimer(timeInterval: 5,
+                                     target: self,
+                                     selector: #selector(timerFired),
+                                     userInfo: nil,
+                                     repeats: true)
     }
         
     func view(_ view: View,
