@@ -35,17 +35,17 @@ final class WorkoutSessionManager: NSObject, Logging {
             session = try HKWorkoutSession(healthStore: healthStore,
                                            configuration: workoutConfiguration())
         } catch {
-            log("WorkoutManager -> failed to start workout")
+            log("failed to start workout")
             isRunning = false
             return
         }
 
-        log("WorkoutSessionManager -> startWorkout")
+        log("startWorkout")
         session.delegate = self
     }
 
     func togglePause() {
-        log("WorkoutSessionManager -> togglePause")
+        log("togglePause")
         if isRunning {
             pauseWorkout()
         }
@@ -55,19 +55,19 @@ final class WorkoutSessionManager: NSObject, Logging {
     }
 
     func pauseWorkout() {
-        log("WorkoutSessionManager -> pauseWorkout")
+        log("pauseWorkout")
         isRunning = false
         session.pause()
     }
 
     func resumeWorkout() {
-        log("WorkoutSessionManager -> resumeWorkout")
+        log("resumeWorkout")
         isRunning = true
         session.resume()
     }
 
     func endWorkout() {
-        log("WorkoutSessionManager -> endWorkout")
+        log("endWorkout")
         isRunning = false
         session.end()
     }
@@ -90,19 +90,19 @@ extension WorkoutSessionManager: HKWorkoutSessionDelegate {
                         didChangeTo toState: HKWorkoutSessionState,
                         from fromState: HKWorkoutSessionState,
                         date: Date) {
-        log("WorkoutSessionManager -> workoutSession didChangeTo: \(toState) from: \(fromState), date: \(date)")
+        log("workoutSession didChangeTo: \(toState) from: \(fromState), date: \(date)")
 
         workoutState = toState
     }
 
     func workoutSession(_ workoutSession: HKWorkoutSession,
                         didFailWithError error: Error) {
-        log("WorkoutSessionManager -> workoutSession didFailWithError: \(error)")
+        log("workoutSession didFailWithError: \(error)")
     }
 
     func workoutSession(_ workoutSession: HKWorkoutSession,
                         didGenerate event: HKWorkoutEvent) {
-        log("WorkoutSessionManager -> workoutSession didGenerate: \(event)")
+        log("workoutSession didGenerate: \(event)")
     }
 
 }

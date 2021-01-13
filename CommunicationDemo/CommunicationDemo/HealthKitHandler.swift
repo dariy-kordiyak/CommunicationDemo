@@ -22,7 +22,7 @@ final class HealthKitHandler: NSObject, Logging {
     func authorizeHealthKit(completion: @escaping ((_ success: Bool,
                                                     _ error: Error?) -> Void)) {
         guard HKHealthStore.isHealthDataAvailable() else {
-            log("HealthKitHandler -> isHealthDataAvailable == false")
+            log("isHealthDataAvailable == false")
             completion(false, nil)
             return
         }
@@ -39,7 +39,7 @@ final class HealthKitHandler: NSObject, Logging {
         
         healthStore.requestAuthorization(toShare: typesToWrite,
                                          read: typesToRead) { [weak self] (success, error) in
-            self?.log("HealthKitHandler -> authorizeHealthKit with success: \(success), error: \(String(describing: error))")
+            self?.log("authorizeHealthKit with success: \(success), error: \(String(describing: error))")
             completion(success, error)
         }
     }
@@ -50,12 +50,12 @@ final class HealthKitHandler: NSObject, Logging {
         guard !isRunning else {
             return
         }
-        log("HealthKitHandler -> start")
+        log("start")
         isRunning = true
     }
     
     func stop() {
-        log("HealthKitHandler -> stop")
+        log("stop")
         isRunning = false
     }
     

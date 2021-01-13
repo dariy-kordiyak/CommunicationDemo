@@ -51,17 +51,17 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     }
     
     func actionButtonTapped() {
-        log("HomePresenter -> actionButtonTapped")
+        log("actionButtonTapped")
         sendMessageToWatch(parameter: "action button")
     }
     
     // MARK: - Actions
     
     @objc private func timerFired() {
-        log("HomePresenter -> timerFired")
+        log("timerFired")
         timerRunCount += 1
         if timerRunCount == 15 {
-            log("HomePresenter -> timer invalidated")
+            log("timer invalidated")
             timer?.invalidate()
         }
         else {
@@ -73,7 +73,7 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
         let message: [String: Any] = ["key": "from phone: \(parameter)"]
         sessionHandler.wcSession.sendMessage(message,
                                              replyHandler: nil) { [weak self] error in
-            self?.log("HomePresenter -> error sending message: \(error)")
+            self?.log("error sending message: \(error)")
         }
     }
     

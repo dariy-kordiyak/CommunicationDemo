@@ -26,7 +26,7 @@ class InterfaceController: WKInterfaceController, Logging {
     override func awake(withContext context: Any?) {
         // Configure interface objects here.
         super.awake(withContext: context)
-        log("InterfaceController -> awake")
+        log("awake")
         
         timer = Timer.scheduledTimer(timeInterval: 5,
                                      target: self,
@@ -38,37 +38,37 @@ class InterfaceController: WKInterfaceController, Logging {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        log("InterfaceController -> willActivate")
+        log("willActivate")
         
         guard WCSession.isSupported() else {
-            log("InterfaceController -> FATAL: WCSession not supported")
+            log("FATAL: WCSession not supported")
             fatalError("WCSession not suppoted")
         }
         wcSession.delegate = self
         wcSession.activate()
         
-        log("InterfaceController -> isCompanionAppInstalled: \(wcSession.isCompanionAppInstalled)")
-        log("InterfaceController -> isReachable: \(wcSession.isReachable)")
+        log("isCompanionAppInstalled: \(wcSession.isCompanionAppInstalled)")
+        log("isReachable: \(wcSession.isReachable)")
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
-        log("InterfaceController -> didDeactivate")
+        log("didDeactivate")
     }
     
     // MARK: - Actions
 
     @IBAction private func actionButtonPressed() {
-        log("InterfaceController -> actionButtonPressed")
+        log("actionButtonPressed")
         sendMessage(parameter: "action button")
     }
     
     @objc private func timerFired() {
-        log("InterfaceController -> timerFired")
+        log("timerFired")
         timerRunCount += 1
         if timerRunCount == 15 {
-            log("InterfaceController -> timer invalidated")
+            log("timer invalidated")
             timer?.invalidate()
         }
         else {
@@ -80,22 +80,22 @@ class InterfaceController: WKInterfaceController, Logging {
     
     private func sendMessage(parameter: String) {
         guard wcSession.isReachable else {
-            log("InterfaceController -> WARNING: sendMessage iPhone not reachable")
+            log("WARNING: sendMessage iPhone not reachable")
             return
         }
-        log("InterfaceController -> sendMessage")
+        log("sendMessage")
         
         let message = ["key": "from Watch: \(parameter)"]
         wcSession.sendMessage(message) { [weak self] response in
             guard let responsePayload = response["key"] as? String else {
-                self?.log("InterfaceController -> FATAL: wrong response format")
-                fatalError("InterfaceController -> FATAL: wrong response format")
+                self?.log("FATAL: wrong response format")
+                fatalError("FATAL: wrong response format")
             }
             DispatchQueue.main.async {
                 self?.textLabel.setText("\(responsePayload)")
             }
         } errorHandler: { [weak self] error in
-            self?.log("InterfaceController -> WARNING: sendMessage errorHandler: \(error)")
+            self?.log("WARNING: sendMessage errorHandler: \(error)")
         }
     }
     
@@ -106,12 +106,12 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
-        log("InterfaceController -> WCSessionDelegate -> activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
+        log("WCSessionDelegate -> activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
     }
     
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any]) {
-        log("InterfaceController -> WCSessionDelegate -> didReceiveMessage: \(message)")
+        log("WCSessionDelegate -> didReceiveMessage: \(message)")
         guard let messagePayload = message["key"] as? String else {
             log("InterfaceController -> WCSessionDelegate -> WARNING: message payload wrong")
             return
@@ -120,11 +120,11 @@ extension InterfaceController: WCSessionDelegate {
     }
     
     func sessionCompanionAppInstalledDidChange(_ session: WCSession) {
-        log("InterfaceController -> sessionCompanionAppInstalledDidChange")
+        log("sessionCompanionAppInstalledDidChange")
     }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
-        log("InterfaceController -> sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
+        log("sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
     }
     
 }

@@ -24,14 +24,14 @@ final class SessionHandler: NSObject, Logging {
     
     func configureWatchConnectivitySession() {
         guard WCSession.isSupported() else {
-            log("SessionHandler -> FATAL: WCSession not supported")
+            log("FATAL: WCSession not supported")
             fatalError("WCSession not suppoted")
         }
         
         wcSession.delegate = self
         wcSession.activate()
         
-        log("SessionHandler -> isReachable: \(wcSession.isReachable)")
+        log("isReachable: \(wcSession.isReachable)")
     }
     
 }
@@ -41,27 +41,27 @@ extension SessionHandler: WCSessionDelegate {
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
-        log("SessionHandler -> activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
+        log("activationDidCompleteWith state: \(activationState), error: \(String(describing: error))")
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        log("SessionHandler -> sessionDidBecomeInactive")
+        log("sessionDidBecomeInactive")
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        log("SessionHandler -> sessionDidDeactivate")
+        log("sessionDidDeactivate")
         /// Switching of paired devices requires session to re-activate
         wcSession.activate()
     }
     
     func sessionWatchStateDidChange(_ session: WCSession) {
-        log("SessionHandler -> sessionWatchStateDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
+        log("sessionWatchStateDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState)")
     }
     
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any],
                  replyHandler: @escaping ([String : Any]) -> Void) {
-        log("SessionHandler -> didReceiveMessage: \(message)")
+        log("didReceiveMessage: \(message)")
         
         delegate?.sessionHandler(self, didReceiveMessage: (message["key"] as? String) ?? "")
         
