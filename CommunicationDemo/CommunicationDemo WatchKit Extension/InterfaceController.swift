@@ -14,6 +14,8 @@ class InterfaceController: WKInterfaceController, Logging {
     // MARK: - Properties
     
     private var wcSession = WCSession.default
+    private var timer: Timer?
+    private var timerRunCount = 0
 
     @IBOutlet private weak var textLabel: WKInterfaceLabel!
     @IBOutlet private weak var dateLabel: WKInterfaceDate!
@@ -25,6 +27,12 @@ class InterfaceController: WKInterfaceController, Logging {
         // Configure interface objects here.
         super.awake(withContext: context)
         log("InterfaceController -> awake")
+        
+        timer = Timer.scheduledTimer(timeInterval: 5,
+                                     target: self,
+                                     selector: #selector(timerFired),
+                                     userInfo: nil,
+                                     repeats: true)
     }
     
     override func willActivate() {
@@ -52,21 +60,34 @@ class InterfaceController: WKInterfaceController, Logging {
     // MARK: - Actions
 
     @IBAction private func actionButtonPressed() {
-        sendMessage()
+        log("InterfaceController -> actionButtonPressed")
+        sendMessage(parameter: "action button")
+    }
+    
+    @objc private func timerFired() {
+        log("InterfaceController -> timerFired")
+        timerRunCount += 1
+        if timerRunCount == 15 {
+            log("InterfaceController -> timer invalidated")
+            timer?.invalidate()
+        }
+        else {
+            sendMessage(parameter: "\(timerRunCount)")
+        }
     }
     
     // MARK: - Private
     
-    private func sendMessage() {
+    private func sendMessage(parameter: String) {
         guard wcSession.isReachable else {
             log("InterfaceController -> WARNING: sendMessage iPhone not reachable")
             return
         }
         log("InterfaceController -> sendMessage")
         
-        let message = ["key": "message"]
+        let message = ["key": "from Watch: \(parameter)"]
         wcSession.sendMessage(message) { [weak self] response in
-            guard let responsePayload = response["message"] as? String else {
+            guard let responsePayload = response["key"] as? String else {
                 self?.log("InterfaceController -> FATAL: wrong response format")
                 fatalError("InterfaceController -> FATAL: wrong response format")
             }
@@ -91,7 +112,7 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any]) {
         log("InterfaceController -> WCSessionDelegate -> didReceiveMessage: \(message)")
-        guard let messagePayload = message["message"] as? String else {
+        guard let messagePayload = message["key"] as? String else {
             log("InterfaceController -> WCSessionDelegate -> WARNING: message payload wrong")
             return
         }

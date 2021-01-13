@@ -8,7 +8,9 @@
 import Foundation
 
 protocol HomeCoordinatorInterface: class {}
-protocol HomeViewInput: class {}
+protocol HomeViewInput: class {
+    func updateLabel(with message: String)
+}
 protocol HomeViewOutput: class {
     func viewDidFetchData()
     func actionButtonTapped()

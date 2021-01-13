@@ -8,11 +8,16 @@
 import Foundation
 import WatchConnectivity
 
+protocol SessionHandlerDelegate: class {
+    func sessionHandler(_ hander: SessionHandler, didReceiveMessage message: String)
+}
+
 final class SessionHandler: NSObject, Logging {
     
     // MARK: - Properties
     
     static let shared = SessionHandler()
+    weak var delegate: SessionHandlerDelegate?
     var wcSession = WCSession.default
     
     // MARK: - API
@@ -57,12 +62,10 @@ extension SessionHandler: WCSessionDelegate {
                  didReceiveMessage message: [String : Any],
                  replyHandler: @escaping ([String : Any]) -> Void) {
         log("SessionHandler -> didReceiveMessage: \(message)")
-        guard message["key"] as? String == "message" else {
-            log("SessionHandler -> WARNING: wrong message payload")
-            return
-        }
         
-        let response: [String: Any] = ["message": "test"]
+        delegate?.sessionHandler(self, didReceiveMessage: (message["key"] as? String) ?? "")
+        
+        let response: [String: Any] = ["key": "iPhone received"]
         replyHandler(response)
     }
     

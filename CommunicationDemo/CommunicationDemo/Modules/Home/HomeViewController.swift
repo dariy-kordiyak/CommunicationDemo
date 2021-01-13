@@ -24,6 +24,14 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
         return ret
     }()
     
+    private let messageLabel: UILabel = {
+        let ret = UILabel()
+        ret.text = "No messages from Watch yet"
+        ret.translatesAutoresizingMaskIntoConstraints = false
+        
+        return ret
+    }()
+    
     private let dataSource: Datasource
     private let eventsHandler: ViewOutput
     
@@ -64,11 +72,21 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
                                  actionButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ]
         NSLayoutConstraint.activate(buttonConstraints)
+        
+        view.addSubview(messageLabel)
+        let labelConstraints = [messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                messageLabel.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 50)
+        ]
+        NSLayoutConstraint.activate(labelConstraints)
     }
 
 }
 
 extension HomeViewController: HomeViewInput {
+    
+    func updateLabel(with message: String) {
+        messageLabel.text = message
+    }
     
 }
 

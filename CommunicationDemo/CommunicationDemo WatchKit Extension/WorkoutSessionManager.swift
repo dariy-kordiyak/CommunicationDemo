@@ -40,7 +40,6 @@ final class WorkoutSessionManager: NSObject, Logging {
             return
         }
 
-        isRunning = true
         log("WorkoutSessionManager -> startWorkout")
         session.delegate = self
     }
