@@ -43,6 +43,11 @@ final class WorkoutSessionManager: NSObject, Logging {
         log("startWorkout")
         session.delegate = self
     }
+    
+    /// New approach, currently not used in legacy app
+    func startWorkoutAlternativery() {
+        session.startActivity(with: Date())
+    }
 
     func togglePause() {
         log("togglePause")

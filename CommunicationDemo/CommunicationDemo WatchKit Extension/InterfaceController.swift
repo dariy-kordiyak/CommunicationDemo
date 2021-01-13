@@ -85,14 +85,12 @@ class InterfaceController: WKInterfaceController, Logging {
         log("sendMessage")
         
         let message = ["key": "from Watch: \(parameter)"]
-        wcSession.sendMessage(message) { _ in
-//            guard let responsePayload = response["key"] as? String else {
-//                self?.log("FATAL: wrong response format")
-//                fatalError("FATAL: wrong response format")
-//            }
-//            DispatchQueue.main.async {
-//                self?.textLabel.setText("\(responsePayload)")
-//            }
+        wcSession.sendMessage(message) { [weak self] response in
+            guard let responsePayload = response["key"] as? String else {
+                self?.log("FATAL: wrong response format")
+                fatalError("FATAL: wrong response format")
+            }
+            self?.log("sendMessage -> response received: \(responsePayload)")
         } errorHandler: { [weak self] error in
             self?.log("WARNING: sendMessage errorHandler: \(error)")
         }
