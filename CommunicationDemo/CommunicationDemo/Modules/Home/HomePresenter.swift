@@ -15,7 +15,6 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     // MARK: - Properties
     
     private var sessionHandler = SessionHandler.shared
-    private var healthKitManager = HealthKitHandler.shared
     private let coordinator: HomeCoordinatorInterface
     
     private var timer: Timer?
@@ -33,8 +32,8 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     // MARK: - HomeViewOutput
     
     func viewDidFetchData() {
-        healthKitManager.authorizeHealthKit { (_, _) in
-            self.healthKitManager.start()
+        sessionHandler.authorizeHealthKit { (_, _) in
+            
         }
         timer = Timer.scheduledTimer(timeInterval: 5,
                                      target: self,
@@ -59,7 +58,7 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     @objc private func timerFired() {
         log("timerFired")
         timerRunCount += 1
-        if timerRunCount == 15 {
+        if timerRunCount == 1500 {
             log("timer invalidated")
             timer?.invalidate()
         }

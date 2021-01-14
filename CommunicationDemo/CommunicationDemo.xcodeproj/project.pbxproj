@@ -11,7 +11,6 @@
 		471047ED25A323A5003CFC2D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471047EC25A323A5003CFC2D /* HomePresenter.swift */; };
 		471047F425A32408003CFC2D /* CoordinatorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471047F325A32408003CFC2D /* CoordinatorInterface.swift */; };
 		4710480525A340EF003CFC2D /* HomeCoordinatorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710480425A340EF003CFC2D /* HomeCoordinatorInterface.swift */; };
-		4710EDB225ADAB96003B5A85 /* HealthKitHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710EDA625AD9E6F003B5A85 /* HealthKitHandler.swift */; };
 		4717853425AD9D0E00DAF2D8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4717853325AD9D0E00DAF2D8 /* HealthKit.framework */; };
 		4744A56E25ADB935002CA396 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4744A56D25ADB935002CA396 /* HealthKit.framework */; };
 		47741CCA25A31B86003E8010 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47741CC925A31B86003E8010 /* AppDelegate.swift */; };
@@ -111,7 +110,6 @@
 		471047EC25A323A5003CFC2D /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		471047F325A32408003CFC2D /* CoordinatorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorInterface.swift; sourceTree = "<group>"; };
 		4710480425A340EF003CFC2D /* HomeCoordinatorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorInterface.swift; sourceTree = "<group>"; };
-		4710EDA625AD9E6F003B5A85 /* HealthKitHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitHandler.swift; sourceTree = "<group>"; };
 		4717853225AD9D0D00DAF2D8 /* CommunicationDemo WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CommunicationDemo WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		4717853325AD9D0E00DAF2D8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		4744A56C25ADB935002CA396 /* CommunicationDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CommunicationDemo.entitlements; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 				47741CC925A31B86003E8010 /* AppDelegate.swift */,
 				47741CCB25A31B86003E8010 /* SceneDelegate.swift */,
 				47DE3AF625AC617B002C3363 /* SessionHandler.swift */,
-				4710EDA625AD9E6F003B5A85 /* HealthKitHandler.swift */,
 				47741CD225A31B88003E8010 /* Assets.xcassets */,
 				47741CD425A31B88003E8010 /* LaunchScreen.storyboard */,
 				47741CD725A31B88003E8010 /* Info.plist */,
@@ -527,7 +524,6 @@
 				47CFC1BF25A9C8D600CFFBEB /* UIUtility.swift in Sources */,
 				47741CCE25A31B86003E8010 /* HomeViewController.swift in Sources */,
 				47AEF20325AF0E270045975D /* SessionUtils.swift in Sources */,
-				4710EDB225ADAB96003B5A85 /* HealthKitHandler.swift in Sources */,
 				47CFC19525A9C54400CFFBEB /* LoggingManager.swift in Sources */,
 				471047E625A3239B003CFC2D /* HomeCoordinator.swift in Sources */,
 				471047F425A32408003CFC2D /* CoordinatorInterface.swift in Sources */,

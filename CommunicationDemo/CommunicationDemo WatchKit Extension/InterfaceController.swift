@@ -65,7 +65,7 @@ class InterfaceController: WKInterfaceController, Logging {
     @objc private func timerFired() {
         log("timerFired")
         timerRunCount += 1
-        if timerRunCount == 15 {
+        if timerRunCount == 1500 {
             log("timer invalidated")
             timer?.invalidate()
         }
@@ -135,6 +135,19 @@ extension InterfaceController: WCSessionDelegate {
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
         log("activationDidCompleteWith state: \(activationState.toString()), error: \(String(describing: error))")
+        
+        switch activationState {
+        case .notActivated:
+            log("activationDidCompleteWith: .notActivated")
+        case .inactive:
+            log("activationDidCompleteWith: .inactive")
+        case .activated:
+            log("activationDidCompleteWith: .activated")
+            createWorkoutSession()
+        @unknown default:
+            log("activationDidCompleteWith unknown state")
+            fatalError()
+        }
     }
     
     func session(_ session: WCSession,

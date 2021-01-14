@@ -20,10 +20,35 @@ final class SessionHandler: NSObject, Logging {
     static let shared = SessionHandler()
     weak var delegate: SessionHandlerDelegate?
     var wcSession = WCSession.default
-    private var healthStore: HKHealthStore!
+    private var healthStore: HKHealthStore = HKHealthStore()
     private var startWatchAppCounter: Int = 0
     
     // MARK: - API
+    
+    func authorizeHealthKit(completion: @escaping ((_ success: Bool,
+                                                    _ error: Error?) -> Void)) {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            log("isHealthDataAvailable == false")
+            completion(false, nil)
+            return
+        }
+        
+        let typesToWrite: Set = [
+            HKSampleType.quantityType(forIdentifier: .bodyMass)!
+        ]
+        
+        let typesToRead: Set = [
+            HKSampleType.quantityType(forIdentifier: .bodyMass)!,
+            HKSampleType.quantityType(forIdentifier: .heartRate)!,
+            HKSampleType.quantityType(forIdentifier: .stepCount)!
+        ]
+        
+        healthStore.requestAuthorization(toShare: typesToWrite,
+                                         read: typesToRead) { [weak self] (success, error) in
+            self?.log("authorizeHealthKit with success: \(success), error: \(String(describing: error))")
+            completion(success, error)
+        }
+    }
     
     func configureWatchConnectivitySession() {
         guard WCSession.isSupported() else {
@@ -33,9 +58,7 @@ final class SessionHandler: NSObject, Logging {
         
         wcSession.delegate = self
         wcSession.activate()
-        
-        healthStore = HKHealthStore()
-        
+                
         log("isReachable: \(wcSession.isReachable)")
     }
     
