@@ -736,14 +736,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "CommunicationDemo WatchKit Extension/CommunicationDemo WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "CommunicationDemo WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dariykordiyak.CommunicationDemo.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksymy.CommunicationDemo.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -759,14 +759,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "CommunicationDemo WatchKit Extension/CommunicationDemo WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "CommunicationDemo WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dariykordiyak.CommunicationDemo.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksymy.CommunicationDemo.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -784,10 +784,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				IBSC_MODULE = CommunicationDemo_WatchKit_Extension;
 				INFOPLIST_FILE = "CommunicationDemo WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dariykordiyak.CommunicationDemo.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksymy.CommunicationDemo.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -804,10 +804,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				IBSC_MODULE = CommunicationDemo_WatchKit_Extension;
 				INFOPLIST_FILE = "CommunicationDemo WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dariykordiyak.CommunicationDemo.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksymy.CommunicationDemo.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -825,14 +825,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CommunicationDemo/CommunicationDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CommunicationDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dariykordiyak.CommunicationDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksymy.CommunicationDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -847,14 +847,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CommunicationDemo/CommunicationDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CommunicationDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dariykordiyak.CommunicationDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maksymy.CommunicationDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -869,7 +869,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CommunicationDemoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -892,7 +892,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CommunicationDemoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -915,7 +915,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CommunicationDemoUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -937,7 +937,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V62PZ8S9D8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CommunicationDemoUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
