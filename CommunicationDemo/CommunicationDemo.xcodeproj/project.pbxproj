@@ -12,6 +12,7 @@
 		471047F425A32408003CFC2D /* CoordinatorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471047F325A32408003CFC2D /* CoordinatorInterface.swift */; };
 		4710480525A340EF003CFC2D /* HomeCoordinatorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710480425A340EF003CFC2D /* HomeCoordinatorInterface.swift */; };
 		4717853425AD9D0E00DAF2D8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4717853325AD9D0E00DAF2D8 /* HealthKit.framework */; };
+		472A50A725B09A7A002F0212 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472A50A625B09A7A002F0212 /* SessionManager.swift */; };
 		4744A56E25ADB935002CA396 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4744A56D25ADB935002CA396 /* HealthKit.framework */; };
 		47741CCA25A31B86003E8010 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47741CC925A31B86003E8010 /* AppDelegate.swift */; };
 		47741CCC25A31B86003E8010 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47741CCB25A31B86003E8010 /* SceneDelegate.swift */; };
@@ -112,6 +113,7 @@
 		4710480425A340EF003CFC2D /* HomeCoordinatorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorInterface.swift; sourceTree = "<group>"; };
 		4717853225AD9D0D00DAF2D8 /* CommunicationDemo WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CommunicationDemo WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		4717853325AD9D0E00DAF2D8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		472A50A625B09A7A002F0212 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		4744A56C25ADB935002CA396 /* CommunicationDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CommunicationDemo.entitlements; sourceTree = "<group>"; };
 		4744A56D25ADB935002CA396 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		47741CC625A31B86003E8010 /* CommunicationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommunicationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,6 +289,7 @@
 				47741D0E25A31B8A003E8010 /* Info.plist */,
 				47741D0F25A31B8A003E8010 /* PushNotificationPayload.apns */,
 				47AEF20F25AF0E7E0045975D /* WatchSessionUtils.swift */,
+				472A50A625B09A7A002F0212 /* SessionManager.swift */,
 			);
 			path = "CommunicationDemo WatchKit Extension";
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				47CFC1AB25A9C75000CFFBEB /* TimeUtility.swift in Sources */,
 				47CFC1B825A9C7DC00CFFBEB /* AppSettings.swift in Sources */,
 				47CFC1A325A9C5B100CFFBEB /* Constants.swift in Sources */,
+				472A50A725B09A7A002F0212 /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
