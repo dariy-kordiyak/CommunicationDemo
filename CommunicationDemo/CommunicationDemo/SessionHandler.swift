@@ -7,6 +7,7 @@
 
 import Foundation
 import WatchConnectivity
+import HealthKit
 
 protocol SessionHandlerDelegate: class {
     func sessionHandler(_ hander: SessionHandler, didReceiveMessage message: String)
@@ -19,6 +20,8 @@ final class SessionHandler: NSObject, Logging {
     static let shared = SessionHandler()
     weak var delegate: SessionHandlerDelegate?
     var wcSession = WCSession.default
+    private var healthStore: HKHealthStore!
+    private var startWatchAppCounter: Int = 0
     
     // MARK: - API
     
@@ -31,7 +34,21 @@ final class SessionHandler: NSObject, Logging {
         wcSession.delegate = self
         wcSession.activate()
         
+        healthStore = HKHealthStore()
+        
         log("isReachable: \(wcSession.isReachable)")
+    }
+    
+    func startWatchApp() {
+        let config = HKWorkoutConfiguration()
+        config.activityType = .walking
+        config.locationType = .indoor
+
+        log("Attempting to start watch app (\(startWatchAppCounter))")
+        healthStore.startWatchApp(with: config, completion: {[weak self, startWatchAppCounter] success, error in
+            self?.log("Received response from startWatchApp (\(startWatchAppCounter)), isSuccess: \(success)")
+        })
+        startWatchAppCounter += 1
     }
     
 }
@@ -42,6 +59,19 @@ extension SessionHandler: WCSessionDelegate {
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
         log("activationDidCompleteWith state: \(activationState.toString()), error: \(String(describing: error))")
+        
+        switch activationState {
+        case .notActivated:
+            log("activationDidCompleteWith .notActivated")
+        case .inactive:
+            log("activationDidCompleteWith .inactive")
+        case .activated:
+            log("activationDidCompleteWith .activated")
+            startWatchApp()
+        @unknown default:
+            log("Session state unknown")
+            fatalError("Session state unknown")
+        }
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {

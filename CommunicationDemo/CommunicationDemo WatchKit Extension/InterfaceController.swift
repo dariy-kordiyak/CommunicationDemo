@@ -7,6 +7,7 @@
 
 import WatchKit
 import WatchConnectivity
+import HealthKit
 import Foundation
 
 class InterfaceController: WKInterfaceController, Logging {
@@ -16,6 +17,9 @@ class InterfaceController: WKInterfaceController, Logging {
     private var wcSession = WCSession.default
     private var timer: Timer?
     private var timerRunCount = 0
+    private let healthStore = HKHealthStore()
+    private var workoutSession: HKWorkoutSession?
+    private var workoutState: HKWorkoutSessionState = .notStarted
 
     @IBOutlet private weak var textLabel: WKInterfaceLabel!
     @IBOutlet private weak var dateLabel: WKInterfaceDate!
@@ -69,7 +73,7 @@ class InterfaceController: WKInterfaceController, Logging {
             sendMessage(parameter: "\(timerRunCount)")
         }
     }
-    
+        
     // MARK: - Private
     
     private func activateSession() {
@@ -100,6 +104,29 @@ class InterfaceController: WKInterfaceController, Logging {
         }
     }
     
+    // MARK: - Workout
+    
+    private func workoutConfiguration() -> HKWorkoutConfiguration {
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .walking
+        configuration.locationType = .indoor
+        
+        return configuration
+    }
+    
+    private func createWorkoutSession() {
+        do {
+            workoutSession = try HKWorkoutSession(healthStore: healthStore,
+                                           configuration: workoutConfiguration())
+            workoutSession?.delegate = self
+        } catch {
+            log("failed to create workout session")
+            return
+        }
+
+        log("createWorkoutSession")
+    }
+
 }
 
 extension InterfaceController: WCSessionDelegate {
@@ -128,4 +155,27 @@ extension InterfaceController: WCSessionDelegate {
         log("sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState.toString())")
     }
     
+}
+
+extension InterfaceController: HKWorkoutSessionDelegate {
+
+    func workoutSession(_ workoutSession: HKWorkoutSession,
+                        didChangeTo toState: HKWorkoutSessionState,
+                        from fromState: HKWorkoutSessionState,
+                        date: Date) {
+        log("workoutSession didChangeTo: \(toState.toString()) from: \(fromState.toString()), date: \(date)")
+
+        workoutState = toState
+    }
+
+    func workoutSession(_ workoutSession: HKWorkoutSession,
+                        didFailWithError error: Error) {
+        log("workoutSession didFailWithError: \(error)")
+    }
+
+    func workoutSession(_ workoutSession: HKWorkoutSession,
+                        didGenerate event: HKWorkoutEvent) {
+        log("workoutSession didGenerate: \(event)")
+    }
+
 }
