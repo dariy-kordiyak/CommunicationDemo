@@ -123,6 +123,8 @@ class InterfaceController: WKInterfaceController, Logging {
             log("failed to create workout session")
             return
         }
+        
+        workoutSession?.prepare()
 
         log("createWorkoutSession")
     }
