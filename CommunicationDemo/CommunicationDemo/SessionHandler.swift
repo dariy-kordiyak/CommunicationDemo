@@ -17,11 +17,16 @@ final class SessionHandler: NSObject, Logging {
     
     // MARK: - Properties
     
+    enum PhoneToWatchCmd: String {
+        case getLogs
+    }
+    
     static let shared = SessionHandler()
     weak var delegate: SessionHandlerDelegate?
     var wcSession = WCSession.default
     private var healthStore: HKHealthStore = HKHealthStore()
     private var startWatchAppCounter: Int = 0
+    private var logPullCompletionHandler: ((_ fileUrl: URL?, _ error: Error?) -> Void)?
     
     // MARK: - API
     
@@ -74,6 +79,46 @@ final class SessionHandler: NSObject, Logging {
         startWatchAppCounter += 1
     }
     
+    func getLogs(completion: @escaping (_ fileUrl: URL?, _ error: Error?) -> Void) {
+        sendWatchRequestGetLogs()
+        logPullCompletionHandler = completion
+        DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
+            let error = NSError(domain: "WatchSensorModel",
+                                code: 1,
+                                userInfo: [NSLocalizedDescriptionKey: "Request timed out"])
+            if let handler = self.logPullCompletionHandler {
+                self.logPullCompletionHandler = nil
+                handler(nil, error)
+            }
+        }
+    }
+    
+    // MARK: - Private
+    
+    private func sendWatchRequestGetLogs() {
+        let request = PhoneToWatchCmd.getLogs
+        sendRequest(request: request, msg: ["cmd": request.rawValue])
+    }
+    
+    @discardableResult
+    private func sendRequest(request: PhoneToWatchCmd, msg: [String: Any], isPing: Bool = false) -> Bool {
+        let pingStr = isPing ? "[ping]" : ""
+        if !isPing {
+            log("Sending \(request) \(pingStr) cmd at \(TimeUtil.nowUTCTimestamp())")
+        } else {
+            debug("Sending \(request) \(pingStr) cmd at \(TimeUtil.nowUTCTimestamp())")
+        }
+
+        wcSession.sendMessage(msg) { (dict) in
+            
+        } errorHandler: { [weak self] (error) in
+            self?.logPullCompletionHandler?(nil, error)
+            self?.logPullCompletionHandler = nil
+        }
+
+        return true
+    }
+    
 }
 
 extension SessionHandler: WCSessionDelegate {
@@ -120,6 +165,22 @@ extension SessionHandler: WCSessionDelegate {
         
         let response: [String: Any] = ["key": "iPhone received"]
         replyHandler(response)
+    }
+    
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        log("session(didReceive file:\(file.fileURL))")
+        if let type = file.metadata?["type"] as? String {
+            if type == "log" {
+                if let handler = logPullCompletionHandler {
+                    logPullCompletionHandler = nil
+                    handler(file.fileURL, nil)
+                }
+            }
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        log("session(didReceiveUserInfo)")
     }
     
 }
