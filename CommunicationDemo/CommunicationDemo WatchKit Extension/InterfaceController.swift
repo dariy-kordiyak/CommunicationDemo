@@ -155,11 +155,26 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any]) {
         log("didReceiveMessage: \(message)")
-        guard let messagePayload = message["key"] as? String else {
-            log("WARNING: message payload wrong")
+        if let messagePayload = message["key"] as? String {
+            textLabel.setText(messagePayload)
+        }
+    }
+    
+    func session(_ session: WCSession,
+                 didReceiveMessage message: [String : Any],
+                 replyHandler: @escaping ([String : Any]) -> Void) {
+        log("didReceiveMessage with reply handler: \(message)")
+        
+        guard message["cmd"] as? String == "getLogs" else {
             return
         }
-        textLabel.setText(messagePayload)
+        
+        guard let logZipFileUrl = LoggingManager.shared.loggedDataZip else {
+            replyHandler(["success": false])
+            return
+        }
+        wcSession.transferFile(logZipFileUrl, metadata: ["type": "log"])
+        replyHandler(["success": true])
     }
     
     func sessionCompanionAppInstalledDidChange(_ session: WCSession) {
@@ -168,6 +183,23 @@ extension InterfaceController: WCSessionDelegate {
     
     func sessionReachabilityDidChange(_ session: WCSession) {
         log("sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState.toString())")
+    }
+    
+    func session(_ session: WCSession, didFinish fileTransfer: WCSessionFileTransfer, error: Error?) {
+        var msg = "session(didFinish:error) called"
+
+        if let error = error {
+            self.error("Error: \(error.localizedDescription)")
+            return
+        }
+
+        if let type = fileTransfer.file.metadata?["type"] as? String {
+            msg += " (type = \(type))"
+        }
+
+        msg += " (filename = \(fileTransfer.file.fileURL))"
+
+        log(msg)
     }
     
 }

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import MessageUI
 
-final class HomeViewController<Datasource, ViewOutput>: UIViewController
+final class HomeViewController<Datasource, ViewOutput>: UIViewController, MFMailComposeViewControllerDelegate, Logging
 where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
 {
     
@@ -31,6 +32,19 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
         
         return ret
     }()
+    
+    private let sendLogsButton: UIButton = {
+        let ret = UIButton(type: .system)
+        ret.setTitle("Send logs", for: .normal)
+        ret.addTarget(self,
+                      action: #selector(sendLogsTapped),
+                      for: .touchUpInside)
+        ret.translatesAutoresizingMaskIntoConstraints = false
+        
+        return ret
+    }()
+    
+    private let emails = ["maksym.yalovol2@globallogic.com", "dariy.kordiyak@globallogic.com"]
     
     private let dataSource: Datasource
     private let eventsHandler: ViewOutput
@@ -62,6 +76,52 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
         eventsHandler.actionButtonTapped()
     }
     
+    @IBAction private func sendLogsTapped() {
+        // Construct the log attachment filename
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateString = formatter.string(from: Date())
+        let email = "max/dariy"
+        let filename = "log_\(email)_\(dateString).zip"
+        
+        let mailVC = MFMailComposeViewController()
+        mailVC.mailComposeDelegate = self
+        mailVC.setToRecipients(emails)
+        mailVC.setSubject("Demo communication App Bug Report")
+        mailVC.setMessageBody("bug report", isHTML: false)
+
+        // Get the watchOS logging data
+        SessionHandler.shared.getLogs { [weak self] (watchLogFileURL: URL?, error: Error?) in
+
+            // Check and log any errors
+            if let error = error {
+                self?.log("Unable to fetch watchOS logs: \(error.localizedDescription)")
+            }
+
+            // Load the watch logs as an attachment
+            if let watchLogFileURL = watchLogFileURL,
+                let watchLogData = try? Data(contentsOf: watchLogFileURL) {
+                self?.log("Successfully fetched watchOS logs")
+                mailVC.addAttachmentData(watchLogData as Data, mimeType: "application/zip",
+                                         fileName: "watchos_" + filename)
+            }
+
+            // Get iOS logs inside of the watchOS logs completion handler so that they
+            // contain any log lines related to the fetching of watchOS logs.
+            if let phoneLogFileURL = LoggingManager.shared.loggedDataZip,
+                let phoneLogData = try? Data(contentsOf: phoneLogFileURL) {
+                self?.log("Successfully zipped iOS logs")
+                mailVC.addAttachmentData(phoneLogData, mimeType: "application/zip",
+                                         fileName: "ios_" + filename)
+            }
+
+            // Present the compose mail view
+            DispatchQueue.main.async {
+                self?.present(mailVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
     // MARK: - Private
     
     private func setupView() {
@@ -78,6 +138,12 @@ where Datasource: HomeViewDatasource, ViewOutput: HomeViewOutput
                                 messageLabel.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 50)
         ]
         NSLayoutConstraint.activate(labelConstraints)
+        
+        view.addSubview(sendLogsButton)
+        let sendLogsButtonConstraints = [sendLogsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                        sendLogsButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 50)
+        ]
+        NSLayoutConstraint.activate(sendLogsButtonConstraints)
     }
 
 }

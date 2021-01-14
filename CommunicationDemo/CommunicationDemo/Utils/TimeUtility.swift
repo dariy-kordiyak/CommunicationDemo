@@ -7,6 +7,14 @@
 
 import Foundation
 
+class TimeUtil {
+    
+    static func nowUTCTimestamp() -> TimeInterval {
+        return Date().timeIntervalSince1970
+    }
+    
+}
+
 extension Timer {
     
     @discardableResult
