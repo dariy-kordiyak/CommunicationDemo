@@ -26,9 +26,25 @@ final class SessionManager: NSObject, Logging {
     private var workoutSession: HKWorkoutSession?
     private var workoutState: HKWorkoutSessionState = .notStarted
     
+    /// simplified version of our Legacy app, we don't need to support .locked / .unlocked states without user login support
+    private var desiredForegroundState: Int?
+    
+    // MARK: - Initialization
+    
+    override init() {
+        super.init()
+        
+        setDesiredForegroundState()
+    }
+    
     // MARK: - API
     
     func setDesiredForegroundState() {
+        guard desiredForegroundState == nil else {
+            log("error: ForegroundStateError.lockOperationInProgress")
+            return
+        }
+        desiredForegroundState = 0
         transitionWorkoutTowardsDesiredState()
     }
     
@@ -61,6 +77,13 @@ final class SessionManager: NSObject, Logging {
     }
     
     private func transitionWorkoutTowardsDesiredState() {
+        guard desiredForegroundState != nil else {
+            log("transitionWorkoutTowardsDesiredState did not complete: desiredForegroundState == nil")
+            return
+        }
+        
+        log("transitionWorkoutTowardsDesiredState, sessionState: \(String(describing: workoutSession?.state.toString()))")
+                
         switch workoutSession?.state {
         case nil:
             createWorkoutSession()
@@ -68,8 +91,7 @@ final class SessionManager: NSObject, Logging {
         case .notStarted:
             workoutSession?.prepare()
         case .prepared:
-            break
-            //desiredForegroundStateAchieved() // We are in the desired state: locked
+            desiredForegroundStateAchieved()
         case .running, .paused, .stopped:
             // We don't ever expect to get into these states.
             // The expected progression through the workout states is:
@@ -83,6 +105,10 @@ final class SessionManager: NSObject, Logging {
         @unknown default:
             warn("Unknown session state: \(workoutSession?.state.toString() ?? "nil")")
         }
+    }
+    
+    private func desiredForegroundStateAchieved() {
+        desiredForegroundState = nil
     }
     
     // MARK: - Workout
@@ -104,9 +130,7 @@ final class SessionManager: NSObject, Logging {
             log("failed to create workout session")
             return
         }
-        
-        workoutSession?.prepare()
-        
+                
         log("createWorkoutSession")
     }
 
@@ -126,7 +150,6 @@ extension SessionManager: WCSessionDelegate {
             log("activationDidCompleteWith: .inactive")
         case .activated:
             log("activationDidCompleteWith: .activated")
-            createWorkoutSession()
         @unknown default:
             log("activationDidCompleteWith unknown state")
             fatalError()
@@ -168,7 +191,9 @@ extension SessionManager: WCSessionDelegate {
         log("sessionReachabilityDidChange, isReachable: \(session.isReachable), activationState: \(session.activationState.toString())")
     }
     
-    func session(_ session: WCSession, didFinish fileTransfer: WCSessionFileTransfer, error: Error?) {
+    func session(_ session: WCSession,
+                 didFinish fileTransfer: WCSessionFileTransfer,
+                 error: Error?) {
         var msg = "session(didFinish:error) called"
 
         if let error = error {
@@ -197,7 +222,7 @@ extension SessionManager: HKWorkoutSessionDelegate {
 
         workoutState = toState
         
-        //transitionWorkoutTowardsDesiredState()
+        transitionWorkoutTowardsDesiredState()
     }
 
     func workoutSession(_ workoutSession: HKWorkoutSession,
