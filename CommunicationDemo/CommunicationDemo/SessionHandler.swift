@@ -19,6 +19,7 @@ final class SessionHandler: NSObject, Logging {
     
     enum PhoneToWatchCmd: String {
         case getLogs
+        case setStartingUp
     }
     
     static let shared = SessionHandler()
@@ -75,6 +76,7 @@ final class SessionHandler: NSObject, Logging {
         log("Attempting to start watch app (\(startWatchAppCounter))")
         healthStore.startWatchApp(with: config, completion: {[weak self, startWatchAppCounter] success, error in
             self?.log("Received response from startWatchApp (\(startWatchAppCounter)), isSuccess: \(success)")
+            self?.sendStartingUpRequest()
         })
         startWatchAppCounter += 1
     }
@@ -97,6 +99,13 @@ final class SessionHandler: NSObject, Logging {
     
     private func sendWatchRequestGetLogs() {
         let request = PhoneToWatchCmd.getLogs
+        log("sendWatchRequestGetLogs")
+        sendRequest(request: request, msg: ["cmd": request.rawValue])
+    }
+    
+    private func sendStartingUpRequest() {
+        let request = PhoneToWatchCmd.setStartingUp
+        log("sendStartingUpRequest")
         sendRequest(request: request, msg: ["cmd": request.rawValue])
     }
     

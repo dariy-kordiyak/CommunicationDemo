@@ -171,16 +171,25 @@ extension SessionManager: WCSessionDelegate {
                  replyHandler: @escaping ([String : Any]) -> Void) {
         log("didReceiveMessage with reply handler: \(message)")
         
-        guard message["cmd"] as? String == "getLogs" else {
+        guard let message = message["cmd"] as? String else {
             return
         }
         
-        guard let logZipFileUrl = LoggingManager.shared.loggedDataZip else {
-            replyHandler(["success": false])
-            return
+        switch message {
+        case "getLogs":
+            guard let logZipFileUrl = LoggingManager.shared.loggedDataZip else {
+                replyHandler(["success": false])
+                return
+            }
+            wcSession.transferFile(logZipFileUrl, metadata: ["type": "log"])
+            replyHandler(["success": true])
+        case "setStartingUp":
+            setDesiredForegroundState()
+        default:
+            break
         }
-        wcSession.transferFile(logZipFileUrl, metadata: ["type": "log"])
-        replyHandler(["success": true])
+        
+        
     }
     
     func sessionCompanionAppInstalledDidChange(_ session: WCSession) {
