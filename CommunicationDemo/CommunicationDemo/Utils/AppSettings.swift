@@ -13,6 +13,9 @@ final class AppSettings {
     
     static let shared = AppSettings()
     
+    static let timerRunCount = 15000
+    static let timerInterval = 5
+    
     private enum UserDefaultsKeys: String {
         case activeLoggingFileIndex
     }

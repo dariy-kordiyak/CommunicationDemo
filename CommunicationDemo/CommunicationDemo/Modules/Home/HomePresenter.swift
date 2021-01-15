@@ -35,7 +35,7 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
         sessionHandler.authorizeHealthKit { (_, _) in
             
         }
-        timer = Timer.scheduledTimer(timeInterval: 5,
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(AppSettings.timerInterval),
                                      target: self,
                                      selector: #selector(timerFired),
                                      userInfo: nil,
@@ -58,7 +58,7 @@ final class HomePresenter: HomeViewDatasource, HomeViewOutput, Logging {
     @objc private func timerFired() {
         log("timerFired")
         timerRunCount += 1
-        if timerRunCount == 1500 {
+        if timerRunCount == AppSettings.timerRunCount {
             log("timer invalidated")
             timer?.invalidate()
         }

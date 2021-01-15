@@ -28,7 +28,7 @@ class InterfaceController: WKInterfaceController, Logging {
         // Configure interface objects here.
         super.awake(withContext: context)
         log("awake")
-        timer = Timer.scheduledTimer(timeInterval: 5,
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(AppSettings.timerInterval),
                                      target: self,
                                      selector: #selector(timerFired),
                                      userInfo: nil,
@@ -63,7 +63,7 @@ class InterfaceController: WKInterfaceController, Logging {
     @objc private func timerFired() {
         log("timerFired")
         timerRunCount += 1
-        if timerRunCount == 1500 {
+        if timerRunCount == AppSettings.timerRunCount {
             log("timer invalidated")
             timer?.invalidate()
         }
